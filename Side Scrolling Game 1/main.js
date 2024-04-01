@@ -5,10 +5,21 @@ class Game {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
         this.player = new Player(this);
+
+        window.addEventListener('resize', e => {
+            this.resize(e.currentTarget.innerWidth, e.currentTarget.innerHeight);
+        });
+    }
+    resize(width, height){
+        this.canvas.width = e.currentTarget.innerWidth;
+        this.canvas.height = e.currentTarget.innerHeight;
+        this.width = this.canvas.width;
+        this.height = this.canvas.height;
     }
     render(){
         this.ctx.fillStyle = 'red';
-        this.ctx.fillRect(100, 200, 350, 150);
+        this.player.update();
+        this.player.draw();
     }
 }
 
@@ -20,4 +31,11 @@ window.addEventListener('load', function(){
 
     const game = new Game(canvas, ctx);
     game.render();
+
+    function animate(){
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        game.render();
+        requestAnimationFrame(animate);
+    }
+    this.requestAnimationFrame(animate);
 });
