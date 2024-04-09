@@ -31,7 +31,7 @@ class Player {
         this.flapSpeed = 7 * this.game.ratio;
     }
     isTouchingTop(){
-        return this.y <= 0;
+        return this.y <= -this.game.height * 0.1;
     }
     isTouchingBottom(){
         return this.y >= this.game.height - this.height;
